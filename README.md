@@ -1,31 +1,33 @@
 # Live Caption
 
-一个免费、开源、完全在 Mac 本地运行的实时双语字幕应用。
+[简体中文](README.zh-CN.md)
 
-## 当前功能
+A free, open-source, real-time bilingual captioning app that runs entirely on your Mac.
 
-- 捕获 Mac 正在播放的系统音频，或切换到麦克风输入
-- 使用 Apple 设备端语音识别生成实时原文
-- 使用 Apple Translation 框架生成实时译文
-- 原文与译文双语显示
-- 字幕窗口始终置顶，可进入全屏空间
-- 顶部提供独立拖动栏，便于随时调整字幕位置
-- 长字幕自动保留最近内容、限制安全行数并平滑换行
-- 可直接同步调整原文和译文字号、背景透明度并隐藏原文，设置会在重启后保留
-- 原文和译文使用相同字号；译文自动换行后，仅最下面的新一行加粗强调
-- 不需要账户、服务器、付费 API 或订阅
-- 可选 CS2 解说词库，为设备端识别加入赛事术语、武器和地图提示词，并统一高频译法
-- 可自动保存每次会话的原文和译文，生成 Markdown 与 JSON 复盘记录
+## Features
 
-## 系统要求
+- Capture audio currently playing on your Mac, or switch to microphone input
+- Generate real-time original-language captions with Apple on-device speech recognition
+- Generate real-time translations with the Apple Translation framework
+- Display the original text and translation together
+- Keep the caption window above other apps, including in full-screen spaces
+- Reposition captions easily with a dedicated drag area at the top of the window
+- Keep long captions inside the panel with smooth wrapping and safe line limits
+- Adjust the font size of both the original text and translation, change background opacity, and hide the original text; preferences persist across launches
+- Use the same font size for the original text and translation while emphasizing only the newest wrapped translation line in bold
+- Work without an account, server, paid API, or subscription
+- Optionally enable a CS2 commentary glossary with tournament terms, weapon names, map names, and normalized translations
+- Automatically save each session's original text and translations as Markdown and JSON for later review
 
-- macOS 15 或更高版本（推荐 macOS 26）
-- Apple Silicon Mac
-- 首次使用某种语言时需要联网下载 Apple 离线语音与翻译语言包
+## System Requirements
 
-## 构建和运行
+- macOS 15 or later; macOS 26 is recommended
+- An Apple silicon Mac
+- An internet connection the first time each Apple offline speech or translation language pack is downloaded
 
-需要安装一套版本一致的 Xcode 或 Apple Command Line Tools：
+## Build and Run
+
+Install a matching version of Xcode or Apple Command Line Tools, then run:
 
 ```bash
 ./scripts/test.sh
@@ -33,55 +35,55 @@
 open "dist/Live Caption.app"
 ```
 
-项目同时保留了 `Package.swift` 和 Swift Testing 测试，安装完整 Xcode 后也可以使用：
+The project also includes a `Package.swift` manifest and Swift Testing tests. With a complete Xcode installation, you can alternatively run:
 
 ```bash
 swift test
 swift run LiveCaption
 ```
 
-为确保系统能显示麦克风和语音识别权限说明，日常使用建议运行打包后的 `.app`。
+For normal use, run the packaged `.app` so macOS can display the microphone and speech-recognition permission descriptions correctly.
 
-如果构建脚本提示开发工具不一致，请从 App Store 安装或更新 Xcode，然后执行：
+If the build script reports inconsistent developer tools, install or update Xcode from the App Store, then run:
 
 ```bash
 sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 ```
 
-## 首次权限
+## First-Run Permissions
 
-应用会按所选输入请求以下权限：
+Depending on the selected audio source, the app requests:
 
-- **语音识别**：把音频转换成文字
-- **麦克风**：仅在选择麦克风输入时使用
-- **屏幕与系统音频录制**：仅在选择电脑声音时使用；应用不会接收、保存或分析画面
+- **Speech Recognition**: converts audio into text
+- **Microphone**: used only when microphone input is selected
+- **Screen & System Audio Recording**: used only when Mac audio is selected; the app does not receive, save, or analyze the screen image
 
-如果曾拒绝权限，请前往“系统设置 → 隐私与安全性”重新允许，然后退出并重开应用。
+If you previously denied a permission, allow Live Caption in **System Settings → Privacy & Security**, then quit and reopen the app.
 
-开发版使用固定 Bundle ID 的稳定本地签名要求，使系统权限在后续重新构建时保持有效。若从旧版升级后系统设置显示已允许但应用仍提示拒绝，可执行：
+Development builds use a stable local signing requirement and fixed bundle ID so permissions survive later rebuilds. If macOS shows permission as enabled after upgrading from an older build but the app still reports a denial, run:
 
 ```bash
 tccutil reset ScreenCapture local.live-caption.app
 ```
 
-然后重开应用并在系统提示中重新允许一次。
+Then reopen the app and approve the system prompt once more.
 
-## 隐私
+## Privacy
 
-识别和翻译均使用 macOS 的设备端能力。应用不包含网络客户端，不上传音频或字幕，也不采集遥测数据。
+Speech recognition and translation use macOS on-device capabilities. The app contains no network client, uploads neither audio nor captions, and collects no telemetry.
 
-## 复盘记录
+## Review Records
 
-开启“保存复盘”后，每次点击“开始”会创建一份独立记录，点击“停止”时定稿。记录位于：
+When **Save Review** is enabled, clicking **Start** creates a separate record and clicking **Stop** finalizes it. Records are stored in:
 
 ```text
 ~/Documents/Live Caption Records/
 ```
 
-Markdown 文件适合直接阅读，JSON 文件便于后续搜索、统计或导入其他工具。应用只保存原文和译文，不保存音频。
+Markdown files are intended for reading, while JSON files can be searched, analyzed, or imported into other tools. The app saves only original text and translations, never audio.
 
-## 已知限制
+## Known Limitations
 
-- Apple Speech 识别前需要选择原语言，首版暂不自动判断语言。
-- 系统音频权限首次授予后，macOS 可能要求重新启动应用。
-- 并非 Apple Translation 支持的所有语言都一定拥有设备端 Speech 语言包。
+- You must select the original language before using Apple Speech; automatic language detection is not yet available.
+- After granting system-audio permission for the first time, macOS may require the app to be restarted.
+- Not every language supported by Apple Translation necessarily has a matching on-device Apple Speech language pack.
