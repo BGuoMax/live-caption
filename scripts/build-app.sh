@@ -65,4 +65,10 @@ codesign \
     --requirements '=designated => identifier "local.live-caption.app"' \
     "$APP_DIR"
 
+# File Provider/Finder may add these attributes as soon as an app bundle appears
+# in a synced folder. They are not part of the app and make strict verification fail.
+xattr -d com.apple.FinderInfo "$APP_DIR" 2>/dev/null || true
+xattr -d com.apple.ResourceFork "$APP_DIR" 2>/dev/null || true
+codesign --verify --deep --strict "$APP_DIR"
+
 print "Built: $APP_DIR"

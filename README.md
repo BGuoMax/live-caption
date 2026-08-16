@@ -1,6 +1,6 @@
 # Live Caption
 
-[简体中文](README.zh-CN.md)
+[Installation](INSTALL.md) · [简体中文](README.zh-CN.md)
 
 A free, open-source, real-time bilingual captioning app that runs entirely on your Mac.
 
@@ -24,6 +24,12 @@ A free, open-source, real-time bilingual captioning app that runs entirely on yo
 - macOS 15 or later; macOS 26 is recommended
 - An Apple silicon Mac
 - An internet connection the first time each Apple offline speech or translation language pack is downloaded
+
+## Install a Release
+
+Download the latest Apple silicon archive from [GitHub Releases](https://github.com/BGuoMax/live-caption/releases), verify its SHA-256 checksum, move **Live Caption.app** to **Applications**, and follow the first-run permission prompts.
+
+The current release build is ad-hoc signed but not Apple-notarized. Read the complete [English installation guide](INSTALL.md) for the safe first-open procedure, language-pack setup, permissions, and troubleshooting. A [Chinese installation guide](INSTALL.zh-CN.md) is also available.
 
 ## Build and Run
 

@@ -1,6 +1,6 @@
 # Live Caption
 
-[English](README.md)
+[安装教程](INSTALL.zh-CN.md) · [English](README.md)
 
 一个免费、开源、完全在 Mac 本地运行的实时双语字幕应用。
 
@@ -24,6 +24,12 @@
 - macOS 15 或更高版本（推荐 macOS 26）
 - Apple Silicon Mac
 - 首次使用某种语言时需要联网下载 Apple 离线语音与翻译语言包
+
+## 安装发布版
+
+从 [GitHub Releases](https://github.com/BGuoMax/live-caption/releases) 下载最新的 Apple Silicon 压缩包，校验 SHA-256 后将 **Live Caption.app** 移入“应用程序”，再按系统提示授予首次运行权限。
+
+当前发布包使用临时本地签名，尚未通过 Apple 公证。完整的首次打开方式、语言包准备、权限设置与故障排查请阅读[中文安装教程](INSTALL.zh-CN.md)。
 
 ## 构建和运行
 
